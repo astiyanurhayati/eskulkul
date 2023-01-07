@@ -3,10 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Progja;
+use App\Models\Student;
+use App\Models\Category;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -20,14 +23,27 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'rombel',
-        'rayon',
-        'nis',
         'username',
         'image_profile',
         'password',
         'role',
+        'eskul_name',
+        'category_id'
     ];
+
+    public function progja(){
+        return $this->hasMany(Progja::class);
+    }
+
+   public function category(){
+        return $this->belongsTo(Category::class);
+   }
+
+   public function students(){
+        return $this->belongsToMany(Student::class, 'student_user', 'user_id', 'student_id');
+   }
+
+
 
     /**
      * The attributes that should be hidden for serialization.

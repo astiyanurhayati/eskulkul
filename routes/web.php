@@ -1,18 +1,18 @@
 <?php
 
 use App\Models\Category;
-use App\Models\Prestasi;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DaftarController;
-use App\Http\Controllers\InfoLombaController;
-use App\Http\Controllers\InstructorController;
-use App\Http\Controllers\MasterStudentController;
-use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\RayonController;
-use App\Models\Instructor;
-use App\Models\MasterStudent;
+use App\Http\Controllers\DaftarController;
+use App\Http\Controllers\ProgjaController;
+use App\Http\Controllers\RombelController;
+
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PrestasiController;
+use App\Http\Controllers\InfoLombaController;
+use App\Http\Controllers\UserContoller;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,10 +76,15 @@ Route::middleware(['isLogin', 'cekRole:admin,instructor'])->group(function () {
     });
     
 });
-
+Route::middleware((['isLogin', 'cekRole:instructor']))->group(function () {
+    Route::prefix('/dashboard')->name('dashboard')->group(function () {
+        Route::resource('progja', ProgjaController::class);
+        Route::get('instructor/data', [StudentController::class, 'data']);
+    });
+});
 
 Route::middleware((['isLogin', 'cekRole:admin']))->group(function () {
-    
+        
     Route::prefix('/dashboard')->name('dashboard')->group(function () {
         
         
@@ -104,11 +109,23 @@ Route::middleware((['isLogin', 'cekRole:admin']))->group(function () {
 
         });
 
+        Route::get('/rekap/progja', [ProgjaController::class, 'rekapProgja']);
+        Route::patch('rekap/progja/validasi/{progja:user_id}', [ProgjaController::class, 'validasi'])->name('.validasi');
+        Route::patch('rekap/progja/tolak/{progja:user_id}', [ProgjaController::class, 'tolak'])->name('.tolak');
 
-        Route::get('/master-student', [MasterStudentController::class, 'index']);
-        Route::resource('rayon', RayonController::class);
-        Route::resource('instructor', InstructorController::class);
+
+        Route::get('student', [StudentController::class, 'index']);
+        Route::get('student/create', [StudentController::class, 'create']);
+        Route::post('student/store', [StudentController::class, 'store']);
         
+        Route::get('eskul-siswa', [StudentController::class, 'createStudentOwn']);
+        Route::post('eksul-siswa/store', [StudentController::class, 'studentStore']);
+
+        Route::resource('rombel', RombelController::class);
+  
+        Route::resource('rayon', RayonController::class);
+
+        Route::resource('instructor', UserContoller::class);
     });
 
 

@@ -3,12 +3,14 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Rayon;
 use App\Models\Daftar;
+use App\Models\Rombel;
 use App\Models\Category;
+use App\Models\Prestasi;
 use App\Models\Instructor;
 use App\Models\MasterStudent;
-use App\Models\Prestasi;
-use App\Models\Rayon;
+use App\Models\Student;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -31,12 +33,135 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Siti Novi Nurkomala',
-            'email' => 'novi@gmail.com',
-            'username' => 'novi',
-            'password' => bcrypt('novi'),
-            'role' => 'student',
+            'name' => 'Sema', 
+            'email' => 'sema@gmail.com',
+            'username' => 'sema',
+            'password' => bcrypt('sema'),
+            'role' => 'instructor',
+            'category_id' => 1,
+            'eskul_name' => 'Merajut'
         ]);
+
+        User::create([
+            'name' => 'selvia', 
+            'email' => 'selvia@gmail.com',
+            'username' => 'selvia',
+            'password' => bcrypt('selvia'),
+            'role' => 'instructor',
+            'category_id' => 4,
+            'eskul_name' => 'Seni Rupa Suara'
+        ]);
+
+        
+        User::create([
+            'name' => 'Nazwa', 
+            'email' => 'nazwa@gmail.com',
+            'username' => 'nazwa',
+            'password' => bcrypt('nazwa'),
+            'role' => 'instructor',
+            'category_id' => 2,
+            'eskul_name' => 'Pencak Silat'
+        ]);
+
+        User::create([
+            'name' => 'nadya', 
+            'email' => 'nadya@gmail.com',
+            'username' => 'nadya',
+            'password' => bcrypt('nadya'),
+            'role' => 'instructor',
+            'category_id' => 1,
+            'eskul_name' => 'Memasak'
+        ]);
+      
+        User::create([
+            'name' => 'Devia', 
+            'email' => 'Devia@gmail.com',
+            'username' => 'Devia',
+            'password' => bcrypt('Devia'),
+            'role' => 'instructor',
+            'category_id' => 3,
+            'eskul_name' => 'Figma'
+        ]);
+
+        User::create([
+            'name' => 'aghies', 
+            'email' => 'aghies@gmail.com',
+            'username' => 'aghies',
+            'password' => bcrypt('aghies'),
+            'role' => 'instructor',
+            'category_id' => 3,
+            'eskul_name' => 'Javascript'
+        ]);
+
+
+        // Student::create([
+        //     'name' => 'Fitri',
+        //     'nis' => 2735325732,
+        //     'rombel' => 'PPLG XI-5',
+        //     'rayon' => 'Cicurug 3',
+        //     'jk' => 'P'
+        // ]);
+
+        // Student::create([
+        //     'name' => 'Giffa',
+        //     'nis' => 89048504,
+        //     'rombel' => 'PPLG XI-5',
+        //     'rayon' => 'Cisarua 6',
+        //     'jk' => 'L'
+        // ]);
+
+        // Student::create([
+        //     'name' => 'Rafly',
+        //     'nis' => 974594,
+        //     'rombel' => 'PPLG XI-5',
+        //     'rayon' => 'Cisarua 1',
+        //     'jk' => 'P'
+        // ]);
+
+        // Student::create([
+        //     'name' => 'Ali Gulam',
+        //     'nis' => 92397532,
+        //     'rombel' => 'TJKT XI-5',
+        //     'rayon' => 'Wikrama 1',
+        //     'jk' => 'P'
+        // ]);
+
+        // Student::create([
+        //     'name' => 'Sarah',
+        //     'nis' => 075325,
+        //     'rombel' => 'MPLB XI-5',
+        //     'rayon' => 'Wikrama 1',
+        //     'jk' => 'P'
+        // ]);
+        // Student::create([
+        //     'name' => 'Nazifa',
+        //     'nis' => 2305832,
+        //     'rombel' => 'DKV XI-2',
+        //     'rayon' => 'Cicurug 8',
+        //     'jk' => 'P'
+        // ]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         Prestasi::create([
@@ -273,18 +398,51 @@ class UserSeeder extends Seeder
         ]);
 
 
-        Instructor::create([
-            'name' => 'Bambang',
-            'daftar_id' => 1
+
+        Rombel::create([
+            'name' => 'PPLG X-1'
+        ]); Rombel::create([
+            'name' => 'PPLG X-2'
+        ]); Rombel::create([
+            'name' => 'PPLG X-3'
+        ]); Rombel::create([
+            'name' => 'PPLG X-4'
+        ]); Rombel::create([
+            'name' => 'PPLG X-5'
+        ]); Rombel::create([
+            'name' => 'PPLG X-6'
         ]);
 
-        Instructor::create([
-            'name' => 'Yanto',
-            'daftar_id' => 2
+        Rombel::create([
+            'name' => 'MPLB X-1'
         ]);
-        Instructor::create([
-            'name' => 'Asep',
-            'daftar_id' => 3
+        Rombel::create([
+            'name' => 'MPLB X-2'
+        ]);  Rombel::create([
+            'name' => 'MPLB X-3'
+        ]);
+        Rombel::create([
+            'name' => 'TJKT X-1'
+        ]);
+        Rombel::create([
+            'name' => 'TJKT X-2'
+        ]);  Rombel::create([
+            'name' => 'TJKT X-3'
+        ]);  Rombel::create([
+            'name' => 'TJKT X-4'
+        ]);
+
+        Rombel::create([
+            'name' => 'PPLG XI-1'
+        ]);
+        Rombel::create([
+            'name' => 'PPLG XI-2'
+        ]);    Rombel::create([
+            'name' => 'PPLG XI-3'
+        ]);    Rombel::create([
+            'name' => 'PPLG XI-4'
+        ]);    Rombel::create([
+            'name' => 'PPLG XI-5'
         ]);
     }
 }

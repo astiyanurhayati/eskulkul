@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\MasterStudent;
 use Illuminate\Database\Seeder;
+use Database\Seeders\StudentMasterSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,7 +24,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call(UserSeeder::class);
+        // $this->call(StudentMasterSeeder::class);
 
-        MasterStudent::factory(30)->create();
+        // MasterStudent::factory(30)->create();
     }
 }

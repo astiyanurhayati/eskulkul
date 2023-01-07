@@ -14,20 +14,23 @@
       </div>
      @endif
   <div class="container mt-5">
-<a href="{{url('dashboard/daftar/create')}}">    <button class="btn btn-primary mb-2" style="color: white">+ Siswa</button></a>
+<a href="{{url('dashboard/student/create')}}">    <button class="btn btn-primary mb-2" style="color: white">+ Siswa</button></a>
     <div class="app-card shadow-sm">
         <div class="table-responsive">
             <table  class="table table-striped">
            <thead>
+            
              <tr>
                <th scope="col">#</th>
                <th scope="col">Nama</th>
                <th scope="col">NIS</th> 
                <th scope="col">Rombel</th>
                <th scope="col">Rayon</th>
-               <th scope="col">Eskul</th>
-               <th scope="col">Instutruktur</th>
-             </tr>
+              <th scope="col" class="text-center" style="min-width: 100px">Umum</th>
+              <th scope="col" class="text-center" style="min-width: 100px">Produktif</th>
+              <th scope="col" style="min-width: 100px">Keputrian</th>
+              <th scope="col" class="text-center" style="min-width: 100px">Seni</th>
+           
            </thead>
            <tbody>
             @foreach ( $masterStudent as  $student)   
@@ -37,8 +40,38 @@
               <td>{{$student->nis}}</td>
               <td>{{$student->rombel}}</td> 
               <td>{{$student->rayon}}</td> 
-              <td>{{$student->eskul}}</td> 
-              <td>{{$student->instructor->name}}</td> 
+              <td>
+                @foreach ( $student->users as $item )
+                  @if($item->category_id == 2)
+                  - {{$item->eskul_name}} <br>
+                  @endif
+                @endforeach
+              </td>
+
+              <td>
+                @foreach ( $student->users as $item )
+                  @if($item->category_id == 3)
+                  - {{$item->eskul_name}}<br>
+                  @endif
+                @endforeach
+              </td>
+              <td>
+                @foreach ( $student->users as $item )
+                  @if($item->category_id == 1)
+                  - {{$item->eskul_name}}<br>
+                  @endif
+                @endforeach
+              </td>
+
+              <td>
+                @foreach ( $student->users as $item )
+                  @if($item->category_id == 4)
+                  - {{$item->eskul_name}}<br>
+                  @endif
+                @endforeach
+              </td>
+
+             
 
 
               {{-- <td class="d-flex gap-1">

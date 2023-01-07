@@ -30,4 +30,8 @@ class Daftar extends Model
         return $this->hasOne(Instructor::class);
     }
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
 }

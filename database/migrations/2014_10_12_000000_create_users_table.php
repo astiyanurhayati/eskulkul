@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id')->nullable();
+            $table->string('eskul_name')->nullable();
             $table->string('name');
             $table->string('username');
             $table->string('email')->unique();
-            $table->string('rombel')->nullable();
-            $table->string('rayon')->nullable();
-            $table->string('nis')->nullable();
             $table->enum('role', ['admin', 'instructor', 'student'])->default('student');
             $table->string('password');
             $table->string('image_profile')->nullable();

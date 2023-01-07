@@ -8,13 +8,13 @@
         </div>
         
       </div>
-      @if(session()->has('success'))
-      <div class="alert alert-success">
-        {{session('success')}}
-      </div>
-     @endif
-  <div class="container mt-5">
-<a href="">    <button class="btn btn-primary mb-2" style="color: white">+ Instruktur</button></a>
+      <div class="container mt-5">
+        <a href="{{url('dashboard/instructor/create')}}">    <button class="btn btn-primary mb-2" style="color: white">+ akun</button></a>
+        @if(session()->has('success'))
+        <div class="alert alert-success">
+          {{session('success')}}
+        </div>
+       @endif
     <div class="app-card shadow-sm w-50">
         <div class="table-responsive">
             <table  class="table table-striped ">
@@ -22,17 +22,21 @@
              <tr>
                <th scope="col">#</th>
                <th scope="col">Nama</th>
-               <th scope="col">Eskul</th>
+               <th scope="col">Nama Eskul</th>
+
+               <th scope="col">Kategori</th>
              </tr>
            </thead>
            <tbody>
-            @foreach ( $instructors as  $instructor)   
-             <tr>
-              <th scope="row">{{$loop->iteration}}</th>
-              <td>{{$instructor->name}}</td>
-              <td>{{$instructor->daftar->title}}</td>
-              @endforeach
-
+         @foreach ($instructors->skip(1) as $inst )
+           
+         <tr>
+          <td>{{$loop->iteration}}</td>
+           <td>{{$inst->name}}</td>
+           <td>{{$inst->eskul_name}}</td>
+           <td>{{$inst->category->name}}</td> 
+         </tr>
+         @endforeach
               {{-- <td>{{$daftar->category->name}}</td> 
               <td class="d-flex gap-1">
               <a href="{{route('dashboard.daftar.edit', $daftar->slug)}}">  <button  class="btn btn-danger" style="color: white">edit</button></a>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Daftar;
 use App\Models\Prestasi;
 use App\Models\InfoLomba;
@@ -22,7 +23,7 @@ class Category extends Model
         return $this->hasMany(InfoLomba::class);
     }
 
-    public function daftars(){
-        return $this->hasMany(Daftar::class);
-    }
+   public function user(){
+        return $this->hasMany(User::class);
+   }
 }
