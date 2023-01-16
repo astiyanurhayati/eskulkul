@@ -41,11 +41,11 @@
                         @enderror
                     </div>
 
-                    {{-- <div class="mb-3">
+                  <div class="mb-3">
                         <label for="gambar" class="form-label">Gambar</label>
                         <input class="form-control  @error('gambar')
                         is-invalid
-                    @enderror" type="file" name="gambar[]" id="gambar" onchange="previewImage()" multiple>
+                    @enderror" type="file" name="gambar[]" id="gambar" multiple>
                     @error('gambar')
                     <div class="invalid-feedback">
                         {{$message}}
@@ -54,7 +54,7 @@
 
                     <img src="" id="imgPreview" class="img-fluid col-sm-5" alt="">
                     </div>
-                    --}}
+                    
                    
                     <div class="mt-3">
                         <label for="slug">Deskripsi</label>

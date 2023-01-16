@@ -6,10 +6,14 @@ use App\Models\Daftar;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DaftarController extends Controller
 {
+    public function myEskul(){
+        return view('pages.myeskul');
+    }
 
     public function daftar(){
 
@@ -53,14 +57,23 @@ class DaftarController extends Controller
     {
 
         // dd($request->all());
-       
         $request->validate([
             'title'=> 'required|min:3',
             'slug'=> 'required:unique:daftars',
             'category_id' => 'required',
             'body' => 'required',
+            'gambar' => 'required'
+          
             
         ]);
+
+       if($request->hasFile('gambar')){
+        foreach($request->file('gambar') as $image){
+                $name = $image->getClientOriginalName();
+                $image->move(public_path() . '/image/', $name);
+                $data[] = $name;
+        }
+       }
 
        Daftar::create([
         'title' => $request->title,
@@ -68,6 +81,8 @@ class DaftarController extends Controller
         'category_id' => $request->category_id,
         'body' => $request->body,
         'user_id' => Auth::user()->id,
+        'gambar' =>json_encode($data)
+   
        ]);
 
         return redirect('/dashboard/daftar')->with('success', 'Berhasil Tambah Data Daftar');
@@ -118,6 +133,13 @@ class DaftarController extends Controller
         if($request->slug != $daftar->slug){
             $rules['slug'] = 'required|unique:daftars';
         }
+
+        // if($request->file('gambar')){
+        //     if($request->oldGambar){
+        //         Storage::delete($request->oldGambar)
+        //     }
+        //     $validatedData['gambar'] = $request->file('gambar')->store('im');
+        // }
         $validatedData = $request->validate($rules);
         $validatedData['user_id'] = auth()->user()->id;
 
@@ -132,9 +154,14 @@ class DaftarController extends Controller
      * @param  \App\Models\Daftar  $daftar
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Daftar $daftar)
+    public function destroy($slug)
     {
-        //
+        $daftar = Daftar::where('slug', $slug)->first();
+        if($daftar->gambar){
+            Storage::delete($daftar->gambar);
+        }
+        $daftar->delete();
+        return back()->with('success', 'berhasil hapus daftar');
     }
 
     public function checkSlug(Request $request){

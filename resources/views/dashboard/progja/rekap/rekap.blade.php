@@ -59,14 +59,14 @@
                 <p style="color: red">Di Ditolak</p>
                 @else
                 <div class="d-flex gap-2">
-                  <form action="{{ route('dashboard.validasi', $progja->user_id) }}" method="POST">
+                  <form action="{{ route('dashboard.validasi', $progja->id) }}" method="POST">
                     @csrf
                     @method('PATCH')
                     <button type="submit" class="btn btn-primary" style="color: white; background:rgb(24, 175, 24)">
                       Validasi </button>
                   </form>
 
-                  <form action="{{ route('dashboard.tolak', $progja->user_id) }}" method="POST">
+                  <form action="{{ route('dashboard.tolak', $progja->id) }}" method="POST">
                     @csrf
                     @method('PATCH')
                     <button type="submit" class="btn btn-danger" style="color: white"> Tolak </button>

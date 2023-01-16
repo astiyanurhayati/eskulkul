@@ -8,12 +8,12 @@
         </div>
         
       </div>
-      @if(session()->has('success'))
-      <div class="alert alert-success">
-        {{session('success')}}
-      </div>
-     @endif
-  <div class="container mt-5">
+      <div class="container mt-5">
+    @if(session()->has('success'))
+    <div class="alert alert-success">
+      {{session('success')}}
+    </div>
+   @endif
 <a href="{{url('dashboard/student/create')}}">    <button class="btn btn-primary mb-2" style="color: white">+ Siswa</button></a>
     <div class="app-card shadow-sm">
         <div class="table-responsive">

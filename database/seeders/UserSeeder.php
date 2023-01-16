@@ -11,6 +11,7 @@ use App\Models\Prestasi;
 use App\Models\Instructor;
 use App\Models\MasterStudent;
 use App\Models\Student;
+use App\Models\StudentUser;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -133,14 +134,53 @@ class UserSeeder extends Seeder
         //     'rayon' => 'Wikrama 1',
         //     'jk' => 'P'
         // ]);
-        // Student::create([
-        //     'name' => 'Nazifa',
-        //     'nis' => 2305832,
-        //     'rombel' => 'DKV XI-2',
-        //     'rayon' => 'Cicurug 8',
-        //     'jk' => 'P'
-        // ]);
+        Student::create([
+            'name' => 'Nazifa',
+            'nis' => 2305832,
+            'rombel' => 'DKV XI-2',
+            'rayon' => 'Cicurug 8',
+            'jk' => 'P',
+            'kelas' => 'XI'
+        ]);
 
+        Student::create([
+            'name' => 'Monalisa',
+            'nis' => 43243,
+            'rombel' => 'PPLG XI-1',
+            'rayon' => 'Cicurug 8',
+            'jk' => 'P',
+            'kelas' => 'XI'
+        ]);
+
+        StudentUser::create([
+            'student_id' => '1',
+            'user_id' => 2,  
+        ]);
+        StudentUser::create([
+            'student_id' => '1',
+            'user_id' => 4,  
+        ]);
+        StudentUser::create([
+            'student_id' => '1',
+            'user_id' => 6,  
+        ]);
+        StudentUser::create([
+            'student_id' => '1',
+            'user_id' => 3,  
+        ]);
+
+        StudentUser::create([
+            'student_id' => '2',
+            'user_id' => 3,  
+        ]);
+        StudentUser::create([
+            'student_id' => '2',
+            'user_id' => 4,  
+        ]);
+        StudentUser::create([
+            'student_id' => '2',
+            'user_id' => 5,  
+        ]);
 
 
 
@@ -234,82 +274,82 @@ class UserSeeder extends Seeder
         ]);
 
 
-        Daftar::create([
-            'category_id' => 1,
-            'user_id' => 1,
-            'title' => 'Javascript',
-            'slug' => 'Javasript',
-            'body' => ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, sunt quaerat et a maiores rem enim blanditiis sint similique quibusdam voluptas quisquam, dolorem temporibus dicta asperiores, porro quidem repellendus ut nisi. Perspiciatis et distinctio esse cumque delectus libero iure ut!lorem2fa-rotate-90lorem39 Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellat odio magni tene
+        // Daftar::create([
+        //     'category_id' => 1,
+        //     'user_id' => 1,
+        //     'title' => 'Javascript',
+        //     'slug' => 'Javasript',
+        //     'body' => ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, sunt quaerat et a maiores rem enim blanditiis sint similique quibusdam voluptas quisquam, dolorem temporibus dicta asperiores, porro quidem repellendus ut nisi. Perspiciatis et distinctio esse cumque delectus libero iure ut!lorem2fa-rotate-90lorem39 Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellat odio magni tene
         
-            tur quod praesentium magnam distinctio voluptatum porro qui? Architecto explicabo distinctio eaque earum ea sint, in quod! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic esse qui placeat itaque inventore voluptas nemo! Cum sed repellat nemo error ullam deleniti quo? Similique facere deserunt suscipit ex, earum eveniet rerum dicta sapiente ipsam adipisci laborum fugit consequuntur repellat.',
+        //     tur quod praesentium magnam distinctio voluptatum porro qui? Architecto explicabo distinctio eaque earum ea sint, in quod! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic esse qui placeat itaque inventore voluptas nemo! Cum sed repellat nemo error ullam deleniti quo? Similique facere deserunt suscipit ex, earum eveniet rerum dicta sapiente ipsam adipisci laborum fugit consequuntur repellat.',
 
-        ]);
+        // ]);
 
-        Daftar::create([
-            'category_id' => 1,
-            'user_id' => 1,
-            'title' => 'Memasak',
-            'slug' => 'memasak',
-            'body' => ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, sunt quaerat et a maiores rem enim blanditiis sint similique quibusdam voluptas quisquam, dolorem temporibus dicta asperiores, porro quidem repellendus ut nisi. Perspiciatis et distinctio esse cumque delectus libero iure ut!lorem2fa-rotate-90lorem39 Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellat odio magni tene
+        // Daftar::create([
+        //     'category_id' => 1,
+        //     'user_id' => 1,
+        //     'title' => 'Memasak',
+        //     'slug' => 'memasak',
+        //     'body' => ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, sunt quaerat et a maiores rem enim blanditiis sint similique quibusdam voluptas quisquam, dolorem temporibus dicta asperiores, porro quidem repellendus ut nisi. Perspiciatis et distinctio esse cumque delectus libero iure ut!lorem2fa-rotate-90lorem39 Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellat odio magni tene
         
-            tur quod praesentium magnam distinctio voluptatum porro qui? Architecto explicabo distinctio eaque earum ea sint, in quod! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic esse qui placeat itaque inventore voluptas nemo! Cum sed repellat nemo error ullam deleniti quo? Similique facere deserunt suscipit ex, earum eveniet rerum dicta sapiente ipsam adipisci laborum fugit consequuntur repellat.',
+        //     tur quod praesentium magnam distinctio voluptatum porro qui? Architecto explicabo distinctio eaque earum ea sint, in quod! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic esse qui placeat itaque inventore voluptas nemo! Cum sed repellat nemo error ullam deleniti quo? Similique facere deserunt suscipit ex, earum eveniet rerum dicta sapiente ipsam adipisci laborum fugit consequuntur repellat.',
 
-        ]);
+        // ]);
 
-        Daftar::create([
-            'category_id' => 2,
-            'user_id' => 1,
-            'title' => 'basket',
-            'slug' => 'basket',
-            'body' => ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, sunt quaerat et a maiores rem enim blanditiis sint similique quibusdam voluptas quisquam, dolorem temporibus dicta asperiores, porro quidem repellendus ut nisi. Perspiciatis et distinctio esse cumque delectus libero iure ut!lorem2fa-rotate-90lorem39 Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellat odio magni tene
+        // Daftar::create([
+        //     'category_id' => 2,
+        //     'user_id' => 1,
+        //     'title' => 'basket',
+        //     'slug' => 'basket',
+        //     'body' => ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, sunt quaerat et a maiores rem enim blanditiis sint similique quibusdam voluptas quisquam, dolorem temporibus dicta asperiores, porro quidem repellendus ut nisi. Perspiciatis et distinctio esse cumque delectus libero iure ut!lorem2fa-rotate-90lorem39 Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellat odio magni tene
         
-            tur quod praesentium magnam distinctio voluptatum porro qui? Architecto explicabo distinctio eaque earum ea sint, in quod! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic esse qui placeat itaque inventore voluptas nemo! Cum sed repellat nemo error ullam deleniti quo? Similique facere deserunt suscipit ex, earum eveniet rerum dicta sapiente ipsam adipisci laborum fugit consequuntur repellat.',
+        //     tur quod praesentium magnam distinctio voluptatum porro qui? Architecto explicabo distinctio eaque earum ea sint, in quod! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic esse qui placeat itaque inventore voluptas nemo! Cum sed repellat nemo error ullam deleniti quo? Similique facere deserunt suscipit ex, earum eveniet rerum dicta sapiente ipsam adipisci laborum fugit consequuntur repellat.',
 
-        ]);
+        // ]);
 
-        Daftar::create([
-            'category_id' => 1,
-            'user_id' => 1,
-            'title' => 'pyton',
-            'slug' => 'pyton',
-            'body' => ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, sunt quaerat et a maiores rem enim blanditiis sint similique quibusdam voluptas quisquam, dolorem temporibus dicta asperiores, porro quidem repellendus ut nisi. Perspiciatis et distinctio esse cumque delectus libero iure ut!lorem2fa-rotate-90lorem39 Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellat odio magni tene
+        // Daftar::create([
+        //     'category_id' => 1,
+        //     'user_id' => 1,
+        //     'title' => 'pyton',
+        //     'slug' => 'pyton',
+        //     'body' => ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, sunt quaerat et a maiores rem enim blanditiis sint similique quibusdam voluptas quisquam, dolorem temporibus dicta asperiores, porro quidem repellendus ut nisi. Perspiciatis et distinctio esse cumque delectus libero iure ut!lorem2fa-rotate-90lorem39 Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellat odio magni tene
         
-            tur quod praesentium magnam distinctio voluptatum porro qui? Architecto explicabo distinctio eaque earum ea sint, in quod! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic esse qui placeat itaque inventore voluptas nemo! Cum sed repellat nemo error ullam deleniti quo? Similique facere deserunt suscipit ex, earum eveniet rerum dicta sapiente ipsam adipisci laborum fugit consequuntur repellat.',
+        //     tur quod praesentium magnam distinctio voluptatum porro qui? Architecto explicabo distinctio eaque earum ea sint, in quod! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic esse qui placeat itaque inventore voluptas nemo! Cum sed repellat nemo error ullam deleniti quo? Similique facere deserunt suscipit ex, earum eveniet rerum dicta sapiente ipsam adipisci laborum fugit consequuntur repellat.',
 
-        ]);
+        // ]);
 
-        Daftar::create([
-            'category_id' => 4,
-            'user_id' => 1,
-            'title' => 'Seni rupa digital',
-            'slug' => 'seni-rupa-digital',
-            'body' => ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, sunt quaerat et a maiores rem enim blanditiis sint similique quibusdam voluptas quisquam, dolorem temporibus dicta asperiores, porro quidem repellendus ut nisi. Perspiciatis et distinctio esse cumque delectus libero iure ut!lorem2fa-rotate-90lorem39 Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellat odio magni tene
+        // Daftar::create([
+        //     'category_id' => 4,
+        //     'user_id' => 1,
+        //     'title' => 'Seni rupa digital',
+        //     'slug' => 'seni-rupa-digital',
+        //     'body' => ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, sunt quaerat et a maiores rem enim blanditiis sint similique quibusdam voluptas quisquam, dolorem temporibus dicta asperiores, porro quidem repellendus ut nisi. Perspiciatis et distinctio esse cumque delectus libero iure ut!lorem2fa-rotate-90lorem39 Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellat odio magni tene
         
-            tur quod praesentium magnam distinctio voluptatum porro qui? Architecto explicabo distinctio eaque earum ea sint, in quod! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic esse qui placeat itaque inventore voluptas nemo! Cum sed repellat nemo error ullam deleniti quo? Similique facere deserunt suscipit ex, earum eveniet rerum dicta sapiente ipsam adipisci laborum fugit consequuntur repellat.',
+        //     tur quod praesentium magnam distinctio voluptatum porro qui? Architecto explicabo distinctio eaque earum ea sint, in quod! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic esse qui placeat itaque inventore voluptas nemo! Cum sed repellat nemo error ullam deleniti quo? Similique facere deserunt suscipit ex, earum eveniet rerum dicta sapiente ipsam adipisci laborum fugit consequuntur repellat.',
 
-        ]);
+        // ]);
 
-        Daftar::create([
-            'category_id' => 3,
-            'user_id' => 1,
-            'title' => 'Unity',
-            'slug' => 'unity',
-            'body' => ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, sunt quaerat et a maiores rem enim blanditiis sint similique quibusdam voluptas quisquam, dolorem temporibus dicta asperiores, porro quidem repellendus ut nisi. Perspiciatis et distinctio esse cumque delectus libero iure ut!lorem2fa-rotate-90lorem39 Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellat odio magni tene
+        // Daftar::create([
+        //     'category_id' => 3,
+        //     'user_id' => 1,
+        //     'title' => 'Unity',
+        //     'slug' => 'unity',
+        //     'body' => ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, sunt quaerat et a maiores rem enim blanditiis sint similique quibusdam voluptas quisquam, dolorem temporibus dicta asperiores, porro quidem repellendus ut nisi. Perspiciatis et distinctio esse cumque delectus libero iure ut!lorem2fa-rotate-90lorem39 Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellat odio magni tene
         
-            tur quod praesentium magnam distinctio voluptatum porro qui? Architecto explicabo distinctio eaque earum ea sint, in quod! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic esse qui placeat itaque inventore voluptas nemo! Cum sed repellat nemo error ullam deleniti quo? Similique facere deserunt suscipit ex, earum eveniet rerum dicta sapiente ipsam adipisci laborum fugit consequuntur repellat.',
+        //     tur quod praesentium magnam distinctio voluptatum porro qui? Architecto explicabo distinctio eaque earum ea sint, in quod! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic esse qui placeat itaque inventore voluptas nemo! Cum sed repellat nemo error ullam deleniti quo? Similique facere deserunt suscipit ex, earum eveniet rerum dicta sapiente ipsam adipisci laborum fugit consequuntur repellat.',
 
-        ]);
+        // ]);
 
-        Daftar::create([
-            'category_id' => 4,
-            'user_id' => 1,
-            'title' => 'macrame',
-            'slug' => 'macrame',
-            'body' => ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, sunt quaerat et a maiores rem enim blanditiis sint similique quibusdam voluptas quisquam, dolorem temporibus dicta asperiores, porro quidem repellendus ut nisi. Perspiciatis et distinctio esse cumque delectus libero iure ut!lorem2fa-rotate-90lorem39 Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellat odio magni tene
+        // Daftar::create([
+        //     'category_id' => 4,
+        //     'user_id' => 1,
+        //     'title' => 'macrame',
+        //     'slug' => 'macrame',
+        //     'body' => ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, sunt quaerat et a maiores rem enim blanditiis sint similique quibusdam voluptas quisquam, dolorem temporibus dicta asperiores, porro quidem repellendus ut nisi. Perspiciatis et distinctio esse cumque delectus libero iure ut!lorem2fa-rotate-90lorem39 Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellat odio magni tene
         
-            tur quod praesentium magnam distinctio voluptatum porro qui? Architecto explicabo distinctio eaque earum ea sint, in quod! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic esse qui placeat itaque inventore voluptas nemo! Cum sed repellat nemo error ullam deleniti quo? Similique facere deserunt suscipit ex, earum eveniet rerum dicta sapiente ipsam adipisci laborum fugit consequuntur repellat.',
+        //     tur quod praesentium magnam distinctio voluptatum porro qui? Architecto explicabo distinctio eaque earum ea sint, in quod! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic esse qui placeat itaque inventore voluptas nemo! Cum sed repellat nemo error ullam deleniti quo? Similique facere deserunt suscipit ex, earum eveniet rerum dicta sapiente ipsam adipisci laborum fugit consequuntur repellat.',
 
-        ]);
+        // ]);
 
 
         Rayon::create([

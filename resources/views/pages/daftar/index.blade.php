@@ -116,7 +116,5 @@
         }
         </script>
 
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias, sunt quaerat et a maiores rem enim blanditiis sint similique quibusdam voluptas quisquam, dolorem temporibus dicta asperiores, porro quidem repellendus ut nisi. Perspiciatis et distinctio esse cumque delectus libero iure ut!lorem2fa-rotate-90lorem39 Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellat odio magni tene
-        
-        tur quod praesentium magnam distinctio voluptatum porro qui? Architecto explicabo distinctio eaque earum ea sint, in quod! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic esse qui placeat itaque inventore voluptas nemo! Cum sed repellat nemo error ullam deleniti quo? Similique facere deserunt suscipit ex, earum eveniet rerum dicta sapiente ipsam adipisci laborum fugit consequuntur repellat.
+       
 </x-main>

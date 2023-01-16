@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('rombel');
             $table->string('rayon');
             $table->enum('jk', ['P', 'L']);
+            $table->enum('kelas', ['X', 'XI', 'XII']);
+           
             $table->timestamps();
         });
     }

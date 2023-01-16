@@ -8,12 +8,12 @@
         </div>
         
       </div>
-      @if(session()->has('success'))
-      <div class="alert alert-success">
-        {{session('success')}}
-      </div>
-     @endif
-  <div class="container mt-5">
+      <div class="container mt-5">
+    @if(session()->has('success'))
+    <div class="alert alert-success">
+      {{session('success')}}
+    </div>
+   @endif
 <a href="{{url('dashboard/daftar/create')}}">    <button class="btn btn-primary mb-2" style="color: white">+ Daftar</button></a>
     <div class="app-card shadow-sm">
         <div class="table-responsive">
@@ -38,7 +38,7 @@
               <a href="{{url('daftar', $daftar->slug)}}"> <button class="btn" style="background: orange; color:white">
                Detail</button></a>
               
-              <form action="" method="POST">
+              <form action="{{route('dashboard.daftar.delete', $daftar->slug)}}" method="POST">
                 @csrf
                 @method('delete')
                 <button  class="btn btn-primary" type="submit" style="color: white" >delete</button>

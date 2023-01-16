@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absensi;
 use App\Models\User;
 use App\Models\Rayon;
 use App\Models\Rombel;
@@ -9,6 +10,7 @@ use App\Models\Student;
 use App\Models\Category;
 use App\Models\StudentUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
@@ -21,7 +23,7 @@ class StudentController extends Controller
 
     
     public function data(){
-        // $masterStudent = Student::with('students')->where('', Auth::user()->id)->get();
+        
         $masterStudent = User::with('students')->where('id', Auth::user()->id)->get();
         return view('dashboard.instructor.manage.data', compact('masterStudent'));
     }
@@ -46,7 +48,8 @@ class StudentController extends Controller
             'nis' => 'required',
             'rayon' => 'required',
             'rombel' => 'required',
-            'jk' => 'required'
+            'jk' => 'required',
+            'kelas' => 'required'
 
         ]);
         Student::create([
@@ -54,7 +57,9 @@ class StudentController extends Controller
             'nis' => $request->nis,
             'rayon' => $request->rayon,
             'rombel' => $request->rombel,
-            'jk' => $request->jk
+            'jk' => $request->jk,
+            'kelas' => $request->kelas,
+          
         ]);
 
         return redirect('/dashboard/student')->with('success', 'Berhasil Menambahkan data siswa');
@@ -128,6 +133,50 @@ class StudentController extends Controller
         return redirect()->back()->with('success', 'behasil menambahkan eskul');
 
 
+    }
+
+
+
+    public function absensi(Request $request){
+
+
+
+        $masterStudent = User::with('students')->where('id', Auth::user()->id)->get();
+        $filterKeyword = $request->get('name');
+        if($filterKeyword){
+            $masterStudent = Student::where("name", "LIKE", "%$filterKeyword%")->paginate(10);
+            
+        }
+        return view('dashboard.instructor.absensi.absensi', compact('masterStudent'));
+    }
+
+    public function absensiStore(Request $request){
+        dd($request->all());
+    }
+    
+    public function absensiRedirect(Request $request){
+
+        // dd($request->kelas);
+        $studentUser = StudentUser::with('student')->where('user_id', Auth::user()->id)->get();
+        // dd($studentUser);
+        $students = []; 
+        foreach($studentUser as $siswa){
+            if($siswa['student']['kelas'] == $request->kelas){
+                array_push($students, $siswa);
+            }
+        }
+        // dd($students);
+
+        foreach($students as $item){
+            Absensi::create([
+                'tanggal' => $request->tanggal,
+                'student_id' => $item->student_id
+            ]);
+        }
+        
+
+    
+        return view('dashboard.instructor.absensi.showinput', compact('request', 'students'));
     }
 
 

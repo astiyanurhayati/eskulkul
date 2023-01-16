@@ -16,7 +16,7 @@
           <ul class="flex flex-col lg:flex-row list-none mr-auto">
             <li class="flex items-center">
               <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/landing"><i
+                href="{{url('mysekul')}}"><i
                   class="lg:text-gray-300 text-gray-500 far fa-file-alt text-lg leading-lg mr-2"></i>
                 MyEskul</a>
             </li>
@@ -100,8 +100,8 @@
       </div>
       <section class="pb-20 bg-gray-300 -mt-24">
         <div class="container mx-auto px-4">
-          <div class="flex flex-wrap  items-center">
-            <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+          <div class="flex flex-wrap  items-center" >
+            <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center"  id="satu">
               <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                 <div class="px-4 py-5 flex-auto">
                   <div
@@ -117,7 +117,7 @@
             </div>
             <div class=" flex-col flex lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
 
-              <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+              <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg " id="satu">
                 <div class="px-4 py-5 flex-auto">
                   <div
                     class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
@@ -131,7 +131,7 @@
 
               </div>
 
-              <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+              <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"  id="satu">
                 <div class="px-4 py-5 flex-auto">
                   <div
                     class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-yellow-400">
@@ -149,7 +149,7 @@
 
 
             <div class="pt-6 w-full md:w-4/12 px-4 text-center">
-              <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+              <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"  id="satu">
                 <div class="px-4 py-5 flex-auto">
                   <div
                     class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
@@ -178,10 +178,10 @@
         </div>
         <div class="container mx-auto px-4">
           <div class="items-center flex flex-wrap">
-            <div class="w-full md:w-4/12 ml-auto mr-auto px-4">
+            <div class="w-full md:w-4/12 ml-auto mr-auto px-4" data-aos="fade-right">
               <img alt="..." class="max-w-full rounded-lg shadow-lg" src="{{asset('assets/img/juara.JPG')}}" />
             </div>
-            <div class="w-full md:w-5/12 ml-auto mr-auto px-4">
+            <div class="w-full md:w-5/12 ml-auto mr-auto px-4" data-aos="fade-left" >
               <div class="md:pr-12">
                 <div
                   class="text-pink-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-pink-300">
@@ -201,7 +201,7 @@
       <section class="pt-20 pb-48">
         <div class="container px-4 mx-auto">
 
-          <div class=" items-center m-auto">
+          <div class=" items-center m-auto" >
             <div class="w-ful  px-4">
               <div class="px-6">
                 <img alt="..." src="{{asset('assets/img/buel.jpg')}}" class="shadow-lg rounded-full max-w-full mx-auto"
@@ -379,5 +379,16 @@
           document.getElementById(collapseID).classList.toggle("hidden");
           document.getElementById(collapseID).classList.toggle("block");
         }
+
+        gsap.from("#satu", {
+  duration: 2,
+  scale: 0.5, 
+  opacity: 0, 
+  delay: 0.5, 
+  stagger: 0.2,
+  ease: "back", 
+  force3D: true
+});
+
   </script>
 </x-main>

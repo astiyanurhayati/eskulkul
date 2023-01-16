@@ -37,18 +37,7 @@
     </div>
 
     <script>
-        const nis = document.getElementById('title');
-        const slug = document.getElementById('slug');
-
-        title.addEventListener('change', function(){
-            fetch('/dashboard/prestasi/checkSlug?title='+title.value)
-                .then(response => response.json())
-                .then(data => slug.value = data.slug)
-        });
-
-        document.addEventListener('trix-file-accept', function(e){
-            e.prefentDefault();
-        });
+       
 
 
         function previewImage(){

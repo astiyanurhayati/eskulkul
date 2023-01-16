@@ -1,6 +1,5 @@
 'use strict';
 
-/* ===== Enable Bootstrap Popover (on element  ====== */
 
 var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="popover"]'))
 var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
@@ -70,27 +69,5 @@ sidePanelDrop.addEventListener('click', (e) => {
 });
 
 
-
-/* ====== Mobile search ======= */
-const searchMobileTrigger = document.querySelector('.search-mobile-trigger');
-const searchBox = document.querySelector('.app-search-box');
-
-searchMobileTrigger.addEventListener('click', () => {
-
-	searchBox.classList.toggle('is-visible');
-	
-	let searchMobileTriggerIcon = document.querySelector('.search-mobile-trigger-icon');
-	
-	if(searchMobileTriggerIcon.classList.contains('fa-search')) {
-		searchMobileTriggerIcon.classList.remove('fa-search');
-		searchMobileTriggerIcon.classList.add('fa-times');
-	} else {
-		searchMobileTriggerIcon.classList.remove('fa-times');
-		searchMobileTriggerIcon.classList.add('fa-search');
-	}
-	
-		
-	
-});
 
 

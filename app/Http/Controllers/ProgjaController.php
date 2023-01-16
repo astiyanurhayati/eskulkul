@@ -15,15 +15,15 @@ class ProgjaController extends Controller
         return view('dashboard.progja.rekap.rekap', compact('users'));
     }
 
-    public function validasi($user_id){
-        Progja::where('user_id', '=', $user_id)->update([
+    public function validasi($id){
+        Progja::where('id', '=', $id)->update([
             'status' => 1,
         ]);
         return redirect()->back()->with('done', 'Berhasil Validasi');
     }
 
-    public function tolak($user_id){
-        Progja::where('user_id', '=', $user_id)->update([
+    public function tolak($id){
+        Progja::where('id', '=', $id)->update([
             'status' => 2,
         ]);
         return redirect()->back()->with('done', 'Permintaan Di tolak');

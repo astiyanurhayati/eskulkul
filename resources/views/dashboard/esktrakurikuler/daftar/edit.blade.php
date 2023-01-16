@@ -42,6 +42,20 @@
                         @enderror
                     </div>
                    
+                    <div class="mb-3">
+                        <label for="gambar" class="form-label">Gambar</label>
+                        <input class="form-control  @error('gambar')
+                        is-invalid
+                    @enderror" type="file" name="gambar[]" id="gambar" multiple>
+                    <input type="hidden" name="oldGambar" value="{{$daftar->gambar}}">
+                    @error('gambar')
+                    <div class="invalid-feedback">
+                        {{$message}}
+                    </div>
+                    @enderror
+                    </div>
+                    
+
                     <div class="mt-3">
                         <label for="slug">Deskripsi</label>
                         <input id="x" value="{{old('body', $daftar->body)}}" type="hidden" name="body">

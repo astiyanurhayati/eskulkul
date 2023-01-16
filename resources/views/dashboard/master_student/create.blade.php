@@ -59,6 +59,15 @@
                     </select>
                  </div>
 
+                 <div class="mt-3">
+                    <select name="kelas" class="form-select">
+                        <option selected disabled>--Kelas--</option>
+                        <option value="X">X</option>
+                        <option value="XI">XI</option>
+                        <option value="XII">XII</option>
+                    </select>
+                 </div>
+
                   
                </div>
 

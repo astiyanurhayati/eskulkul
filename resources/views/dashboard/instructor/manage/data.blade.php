@@ -33,24 +33,24 @@
            <tbody>
              @foreach ($masterStudent as $students )
              @foreach ($students->students as $item)             
-            <tr>
-              <td>{{$loop->iteration}}</td>
-              <td>
-               {{$item->name}} <br>
-              </td>
-              <td>
-                {{$item->nis}} <br>
-               </td>
-               <td>
-                {{$item->rombel}} <br>
-               </td>
-               <td>
-                {{$item->rayon}} <br>
-               </td>
-               <td>
-                {{$item->jk}} <br>
-               </td>
-            </tr>
+                <tr>
+                  <td>{{$loop->iteration}}</td>
+                  <td>
+                  {{$item->name}} <br>
+                  </td>
+                  <td>
+                    {{$item->nis}} <br>
+                  </td>
+                  <td>
+                    {{$item->rombel}} <br>
+                  </td>
+                  <td>
+                    {{$item->rayon}} <br>
+                  </td>
+                  <td>
+                    {{$item->jk}} <br>
+                  </td>
+                </tr>
             @endforeach 
             @endforeach
             {{-- <td class="d-flex gap-1">

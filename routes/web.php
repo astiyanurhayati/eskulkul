@@ -80,6 +80,10 @@ Route::middleware((['isLogin', 'cekRole:instructor']))->group(function () {
     Route::prefix('/dashboard')->name('dashboard')->group(function () {
         Route::resource('progja', ProgjaController::class);
         Route::get('instructor/data', [StudentController::class, 'data']);
+
+        Route::get('/absensi', [StudentController::class, 'absensi'])->name('.absensi.index');
+        Route::post('absensi/store', [StudentController::class, 'absensiStore']);
+        Route::get('absensi/redirect', [StudentController::class, 'absensiRedirect'])->name('.absensi.redirect');
     });
 });
 
@@ -105,13 +109,14 @@ Route::middleware((['isLogin', 'cekRole:admin']))->group(function () {
             Route::get('/edit/{slug}', [DaftarController::class, 'edit'])->name('.daftar.edit');
             Route::get('/checkSlug', [DaftarController::class, 'checkSlug']);
             Route::patch('/update/{daftar:slug}', [DaftarController::class, 'update'])->name('.daftar.update');
+            Route::delete('/detele/{slug}', [DaftarController::class, 'destroy'])->name('.daftar.delete');
             Route::post('/store', [DaftarController::class, 'store'])->name('.daftar.store');
 
         });
 
         Route::get('/rekap/progja', [ProgjaController::class, 'rekapProgja']);
-        Route::patch('rekap/progja/validasi/{progja:user_id}', [ProgjaController::class, 'validasi'])->name('.validasi');
-        Route::patch('rekap/progja/tolak/{progja:user_id}', [ProgjaController::class, 'tolak'])->name('.tolak');
+        Route::patch('rekap/progja/validasi/{progja:id}', [ProgjaController::class, 'validasi'])->name('.validasi');
+        Route::patch('rekap/progja/tolak/{progja:id}', [ProgjaController::class, 'tolak'])->name('.tolak');
 
 
         Route::get('student', [StudentController::class, 'index']);
@@ -134,6 +139,10 @@ Route::middleware((['isLogin', 'cekRole:admin']))->group(function () {
 });
 
 
+Route::middleware((['isLogin', 'cekRole:student']))->group(function () {
+    Route::get('/mysekul', [DaftarController::class, 'myEskul']);
+});
+
 
 Route::middleware('isGuest')->group(function () {
     Route::get('/login', [AuthController::class, 'index']);
@@ -146,3 +155,6 @@ Route::get('/error',function () {
         return view('error');
     }
 );
+
+
+
