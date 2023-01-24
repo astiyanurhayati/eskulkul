@@ -15,9 +15,9 @@
         {{session('success')}}
     </div>
     @endif
-   
+
     <div class="container mt-3">
-    
+
         <div class="app-card shadow-sm">
             <div class="table-responsive">
                 <form action="{{url('dashboard/absensi/store')}}" method="POST">
@@ -27,49 +27,89 @@
 
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col"></th>
+
+                                <th scope="col">Tanggal</th>
+                                
                                 <th scope="col">Nama</th>
                                 <th scope="col">NIS</th>
                                 <th scope="col">Rombel</th>
                                 <th scope="col">Rayon</th>
                                 <th scope="col">JK</th>
                                 <th scope="col">Keterangan</th>
-                           
+                                <th></th>
+                                <th>Action</th>
+
 
 
                         </thead>
                         <tbody>
 
-                        @foreach ($students as $show )
-                                <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                <td>{{$show->student->name}}</td>
-                                <td>{{$show->student->nis}}</td>
-                                <td>{{$show->student->rombel}}</td>
-                                <td>{{$show->student->rayon}}</td>
-                                <td>{{$show->student->jk}}</td>
-                                <td class="max-w-50">
-                                    <select name="keterangan" id="keterangan" class="form-select" onchange="showKeterangan()" >
-                                        <option  selected>--option--</option>
-                                        <option value="hadir">Hadir</option>
-                                        <option value="sakit">Sakit</option>
-                                        <option value="izin">Izin</option>
-                                      </select>
-                                </td>
-                              <td>
-                                <textarea style="display: none" class="form-control" placeholder="Alasan Izin" id="ket" rows="3"></textarea>
-                              </td>
-                                    
-                                </tr>
-                         
-                        @endforeach
+                            @foreach ($students as $show )
 
-                      
+                            <tr>
+                                <form action="{{route('dashboard.absensi.store')}}" method="POST">
+                                    @csrf
+                                    
+                                    <td>{{$loop->iteration}}</td>
+                                    <td><input type="hidden" name="student_id" value="{{$show->student->id}}"></td>
+                                    <td><input type="text" class="form-control" name="tanggal" readonly value="{{$request->tanggal}}"></td>
+                                    <td><input type="text" class="form-control" name="name" readonly value="{{$show->student->name}}"></td>
+                            
+                                    <td><input type="text" class="form-control" readonly  value="{{$show->student->nis}}"></td>
+                                    <td><input type="text" class="form-control" readonly  value="{{$show->student->rombel}}"></td>
+                                    <td><input type="text" class="form-control" readonly  value="{{$show->student->rayon}}"></td>
+                                    <td><input type="text" class="form-control" readonly  value="{{$show->student->jk}}"></td>
+                                    <td class="max-w-50">
+                                        <select name="keterangan" id="keterangan{{$show->id}}" class="form-select"
+                                            onchange="shownote({{ $show->id }})">
+                                            <option selected disabled>--option--</option>
+                                            <option value="hadir">Hadir</option>
+                                            <option value="sakit">Sakit</option>
+                                            <option value="izin">Izin</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" placeholder="Keterangan" class="form-control" id="izindesk{{$show->id}}"
+                                            style="display: none;">
+                                    </td>
+                                    <td>
+                                        @if($show->keterangan == null)
+                                        <button class="btn" style="background: green; color:white">Submit</button>
+                                        @else
+                                        <p>sudah ya</p>
+                                        @endif
+                                    </td>
+
+                                </form>
+
+                            </tr>
+
+                            @endforeach
+
+
+
                         </tbody>
                     </table>
-                    <button class="btn btn-primary" style="color:white"> Kirim </button>
                 </form>
             </div>
         </div>
- 
+
     </div>
+
+    <script>
+
+        
+        function shownote(id){
+            var keterangan = document.getElementById(`keterangan${id}`).value;
+            var izindesk = document.getElementById(`izindesk${id}`);
+
+            if (keterangan == "izin") {
+                izindesk.style.display = "";
+            }else {
+                izindesk.style.display = "none";
+            }
+        }
+
+    </script>
 </x-master>

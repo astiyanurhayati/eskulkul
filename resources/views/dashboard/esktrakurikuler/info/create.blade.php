@@ -21,10 +21,7 @@
                         @enderror
                     </div>
 
-                    <div class="mt-2">
-            
-                        <input type="text" name="slug" value="{{old('slug')}}" class="form-control" id="slug" placeholder="Slug" readonly>
-                    </div>
+                   
                     <div class="mt-3">
                         <select class="form-select form-select @error('category_id')
                                 is-invalid
@@ -41,35 +38,29 @@
                         @enderror
                     </div>
 
-                    {{-- <div class="mb-3">
+                    <div class="mb-3 mt-3">
                         <label for="gambar" class="form-label">Gambar</label>
                         <input class="form-control  @error('gambar')
                         is-invalid
-                    @enderror" type="file" name="gambar" id="gambar" onchange="previewImage()">
+                    @enderror" type="file" onchange="previewImage()" name="infoimg" id="infoimg" >
                     @error('gambar')
                     <div class="invalid-feedback">
                         {{$message}}
                     </div>
                     @enderror
 
-                    <img src="" id="imgPreview" class="img-fluid col-sm-5" alt="">
-                    </div> --}}
+                    <img src="" id="imgPreview" style="max-width: 100px" class="img-fluid col-sm-5" alt="">
+                    </div>
 
-                    <button type="submit" class="btn btn-primary mt-3" style="color: white">Create Prestasi</button>
+                    
+
+                    <button type="submit" class="btn btn-primary mt-3" style="color: white">Create Informasi Lomba</button>
                 </form>
             </div>
         </div>
     </div>
 
     <script>
-        const title = document.getElementById('title');
-        const slug = document.getElementById('slug');
-
-        title.addEventListener('change', function(){
-            fetch('/dashboard/prestasi/checkSlug?title='+title.value)
-                .then(response => response.json())
-                .then(data => slug.value = data.slug)
-        });
 
         document.addEventListener('trix-file-accept', function(e){
             e.prefentDefault();
@@ -77,7 +68,7 @@
 
 
         function previewImage(){
-            const image = document.getElementById('gambar');
+            const image = document.getElementById('infoimg');
             const imgPreview = document.getElementById('imgPreview');
 
             imgPreview.style.display = 'block';

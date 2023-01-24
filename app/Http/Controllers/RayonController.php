@@ -26,7 +26,7 @@ class RayonController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.rayon.create');
     }
 
     /**
@@ -37,7 +37,16 @@ class RayonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'name' => 'required|unique:rombels,name'
+        ]);
+
+        Rayon::create([
+            'name' => $request->name
+        ]);
+
+        return redirect('/dashboard/rayon')->with('success', 'berhasil tambahkan rayon baru');
     }
 
     /**
@@ -82,6 +91,7 @@ class RayonController extends Controller
      */
     public function destroy(Rayon $rayon)
     {
-        //
+        $rayon->delete();
+        return back()->with('success', 'Berhasil Hapus Rayon');
     }
 }

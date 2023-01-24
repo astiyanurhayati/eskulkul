@@ -8,13 +8,14 @@
         </div>
         
       </div>
-      @if(session()->has('success'))
-      <div class="alert alert-success">
-        {{session('success')}}
-      </div>
-     @endif
-  <div class="container mt-5">
-<a href="{{url('dashboard/daftar/create')}}">    <button class="btn btn-primary mb-2" style="color: white">+ Rombel</button></a>
+      <div class="container mt-5">
+    @if(session()->has('success'))
+    <div class="alert alert-success">
+      {{session('success')}}
+    </div>
+   @endif
+<a href="{{url('dashboard/rombel/create')}}">    
+  <button class="btn btn-primary mb-2" style="color: white">+ Rombel</button></a>
     <div class="app-card shadow-sm w-50">
         <div class="table-responsive">
             <table  class="table table-striped ">
@@ -22,6 +23,7 @@
              <tr>
                <th scope="col">#</th>
                <th scope="col">Nama</th>
+               <th scope="col">Action</th>
              </tr>
            </thead>
            <tbody>
@@ -29,8 +31,17 @@
                <tr>
             <td>{{$loop->iteration}}</td>
             <td>{{$rombel->name}}</td>
+            <td>
+              <form action="{{route('dashboardrombel.destroy', $rombel->id)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger">Hapus</button>
+              </form>
+            </td>
             @endforeach
             </tr>
+            
+            
              
            </tbody>
          </table>

@@ -46,25 +46,7 @@
         </div>
         <button class="btn btn-warning"  data-bs-toggle="modal" data-bs-target="#exampleModal" style="background: rgb(176, 91, 18); color:white">+ Absen Siswa</button>
 
-        <div class="max-w-50 col-5">
-            <form action="{{route('dashboard.absensi.index')}}">
-             <div class="input-group gap-3 ">
-                 <input 
-                   type="text" 
-                   class="form-control" 
-                   placeholder="Filter"
-                   value="{{Request::get('name')}}"
-                   name="name" placeholder="search">
-                   
-                 <div class="input-group-append ml-5">
-                   <input 
-                     type="submit" 
-                     value="Filter" 
-                     class="btn btn-primary" style="color:white">
-                 </div>
-             </div>
-            </form>
-         </div>
+        
     </section>
     <div class="container mt-3">
     

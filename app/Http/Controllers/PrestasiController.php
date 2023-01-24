@@ -23,11 +23,12 @@ class PrestasiController extends Controller
         $title = " di " . $category->name;
     }
 
-    return view('pages.prestasi.index', [
+     return view('pages.prestasi.index', [
         'title' => "Semua Prestasi" . $title,
         'prestasis' =>Prestasi::latest()->filter(request(['search', 'category']))->paginate('6'),
         'categories' => Category::all()
-        ]); 
+        ]);
+     
     }
 
     public function show(Prestasi $prestasi){

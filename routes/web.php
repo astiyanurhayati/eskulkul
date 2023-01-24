@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbsensiController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -13,6 +14,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\InfoLombaController;
 use App\Http\Controllers\UserContoller;
+use App\Models\Absensi;
+use App\Models\InfoLomba;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +40,7 @@ Route::get('/prestasi/{prestasi:slug}',[PrestasiController::class, 'show']);
 
 //infolomba
 Route::get('/info-lomba', [InfoLombaController::class, 'info']);
-Route::get('/info/{infolomba:slug}', [InfoLombaController::class, 'show']);
+Route::get('/info-lomba/{category:id}', [InfoLombaController::class, 'showCategoryInfo'])->name('info.category');
 
 
 //daftar
@@ -67,8 +70,12 @@ Route::middleware(['isLogin', 'cekRole:admin,instructor'])->group(function () {
         
         Route::prefix('/info')->group(function () {
             Route::get('/', [InfoLombaController::class, 'index']);
+            Route::get('/delete/{id}', [InfoLombaController::class, 'destroy'])->name('.delete');
             Route::get('/create', [InfoLombaController::class, 'create']);
             Route::post('/store', [InfoLombaController::class, 'store']);
+            Route::get('/edit/{id}', [InfoLombaController::class, 'edit'])->name('.edit');
+            Route::patch('/update/{id}', [InfoLombaController::class, 'update'])->name('.info.update');
+            Route::delete('/delete/{id}', [InfoLombaController::class, 'destroy'])->name('.info.delete');
             
         });
         
@@ -80,10 +87,10 @@ Route::middleware((['isLogin', 'cekRole:instructor']))->group(function () {
     Route::prefix('/dashboard')->name('dashboard')->group(function () {
         Route::resource('progja', ProgjaController::class);
         Route::get('instructor/data', [StudentController::class, 'data']);
-
         Route::get('/absensi', [StudentController::class, 'absensi'])->name('.absensi.index');
-        Route::post('absensi/store', [StudentController::class, 'absensiStore']);
         Route::get('absensi/redirect', [StudentController::class, 'absensiRedirect'])->name('.absensi.redirect');
+        Route::post('/absensi/store', [StudentController::class, 'absensiStore'])->name('.absensi.store');
+        Route::get('/absensi/rekap', [AbsensiController::class, 'index']);
     });
 });
 

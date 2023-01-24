@@ -68,11 +68,11 @@ class DaftarController extends Controller
         ]);
 
        if($request->hasFile('gambar')){
-        foreach($request->file('gambar') as $image){
-                $name = $image->getClientOriginalName();
-                $image->move(public_path() . '/image/', $name);
-                $data[] = $name;
-        }
+            foreach($request->file('gambar') as $image){
+                    $name = $image->getClientOriginalName();
+                    $image->move(public_path() . '/daftarimage/', $name);
+                    $data[] = $name;
+            }
        }
 
        Daftar::create([
@@ -134,12 +134,6 @@ class DaftarController extends Controller
             $rules['slug'] = 'required|unique:daftars';
         }
 
-        // if($request->file('gambar')){
-        //     if($request->oldGambar){
-        //         Storage::delete($request->oldGambar)
-        //     }
-        //     $validatedData['gambar'] = $request->file('gambar')->store('im');
-        // }
         $validatedData = $request->validate($rules);
         $validatedData['user_id'] = auth()->user()->id;
 
@@ -161,6 +155,8 @@ class DaftarController extends Controller
             Storage::delete($daftar->gambar);
         }
         $daftar->delete();
+            
+
         return back()->with('success', 'berhasil hapus daftar');
     }
 

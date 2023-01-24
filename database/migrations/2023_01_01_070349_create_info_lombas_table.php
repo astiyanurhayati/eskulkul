@@ -17,8 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id');
             $table->foreignId('user_id');
-            // $table->string('foto_lomba');
-            $table->string('slug');
+            $table->string('infoimg');
             $table->string('link');
             $table->timestamps();
         });

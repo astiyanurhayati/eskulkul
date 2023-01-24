@@ -25,7 +25,7 @@ class RombelController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.rombel.create');
     }
 
     /**
@@ -36,7 +36,16 @@ class RombelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'name' => 'required|unique:rombels,name'
+        ]);
+
+        Rombel::create([
+            'name' => $request->name
+        ]);
+
+        return redirect('/dashboard/rombel')->with('success', 'berhasil tambahkan rombel baru');
     }
 
     /**
@@ -81,6 +90,7 @@ class RombelController extends Controller
      */
     public function destroy(Rombel $rombel)
     {
-        //
+        $rombel->delete();
+        return back()->with('success', 'Berhasil Hapus Rombel');
     }
 }

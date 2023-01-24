@@ -1,4 +1,4 @@
-<x-master title="prestasi">
+<x-master title="Daftar Eskul">
     
     <div class="app-card alert alert-dismissible shadow-sm mb-1 border-left-decoration mt-4 mx-5" role="alert">
         <div class="inner">
@@ -33,7 +33,7 @@
               <td>{{$daftar->title}}</td>
               <td>{{$daftar->category->name}}</td> 
               <td class="d-flex gap-1">
-              <a href="{{route('dashboard.daftar.edit', $daftar->slug)}}">  <button  class="btn btn-danger" style="color: white">edit</button></a>
+              <a href="{{route('dashboard.daftar.edit', $daftar->slug)}}">  <button  class="btn btn-danger" style="color: white">Edit</button></a>
               
               <a href="{{url('daftar', $daftar->slug)}}"> <button class="btn" style="background: orange; color:white">
                Detail</button></a>
@@ -41,7 +41,7 @@
               <form action="{{route('dashboard.daftar.delete', $daftar->slug)}}" method="POST">
                 @csrf
                 @method('delete')
-                <button  class="btn btn-primary" type="submit" style="color: white" >delete</button>
+                <button  class="btn btn-primary" type="submit" style="color: white" >Hapus</button>
              </form>
             
             </td>

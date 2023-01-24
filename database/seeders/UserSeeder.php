@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
             'username' => 'sema',
             'password' => bcrypt('sema'),
             'role' => 'instructor',
-            'category_id' => 1,
+            'category_id' => 3,
             'eskul_name' => 'Merajut'
         ]);
 
@@ -60,7 +60,7 @@ class UserSeeder extends Seeder
             'username' => 'nazwa',
             'password' => bcrypt('nazwa'),
             'role' => 'instructor',
-            'category_id' => 2,
+            'category_id' => 1,
             'eskul_name' => 'Pencak Silat'
         ]);
 
@@ -70,7 +70,7 @@ class UserSeeder extends Seeder
             'username' => 'nadya',
             'password' => bcrypt('nadya'),
             'role' => 'instructor',
-            'category_id' => 1,
+            'category_id' => 3,
             'eskul_name' => 'Memasak'
         ]);
       
@@ -80,7 +80,7 @@ class UserSeeder extends Seeder
             'username' => 'Devia',
             'password' => bcrypt('Devia'),
             'role' => 'instructor',
-            'category_id' => 3,
+            'category_id' => 2,
             'eskul_name' => 'Figma'
         ]);
 
@@ -90,7 +90,7 @@ class UserSeeder extends Seeder
             'username' => 'aghies',
             'password' => bcrypt('aghies'),
             'role' => 'instructor',
-            'category_id' => 3,
+            'category_id' => 2,
             'eskul_name' => 'Javascript'
         ]);
 
@@ -255,18 +255,18 @@ class UserSeeder extends Seeder
 
         ]);
 
-
+        
         Category::create([
-            'name' => 'keputrian',
-            'slug' => 'keputrian',
-        ]);
-        Category::create([
-            'name' => 'umum',
+            'name' => 'Umum',
             'slug' => 'umum',
         ]);
         Category::create([
             'name' => 'Produktif',
             'slug' => 'produktif',
+        ]);
+        Category::create([
+            'name' => 'Keputrian',
+            'slug' => 'keputrian',
         ]);
         Category::create([
             'name' => 'Seni',

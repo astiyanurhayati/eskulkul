@@ -2,7 +2,7 @@
 
     <div class="container ml-3">
         <div class="app-card rounded w-50 pl-4">
-            <h5 class="py-2 rounded">Create Daftar baru</h5>
+            <h5 class="py-2 rounded" style="margin-left:20px">Create Daftar baru</h5>
         </div>
         <div class="col-8 mb-5">
 
@@ -41,18 +41,17 @@
                         @enderror
                     </div>
 
-                  <div class="mb-3">
+                  <div class="mb-3 mt-3">
                         <label for="gambar" class="form-label">Gambar</label>
                         <input class="form-control  @error('gambar')
                         is-invalid
                     @enderror" type="file" name="gambar[]" id="gambar" multiple>
+                    <p>Select lebih dari 1 gambar</p>
                     @error('gambar')
                     <div class="invalid-feedback">
                         {{$message}}
                     </div>
                     @enderror
-
-                    <img src="" id="imgPreview" class="img-fluid col-sm-5" alt="">
                     </div>
                     
                    
@@ -65,7 +64,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary mt-3" style="color: white">Create Prestasi</button>
+                    <button type="submit" class="btn btn-primary mt-3" style="color: white">Create Daftar</button>
                 </form>
             </div>
         </div>
@@ -86,19 +85,6 @@
         });
 
 
-        function previewImage(){
-            const image = document.getElementById('gambar');
-            const imgPreview = document.getElementById('imgPreview');
-
-            imgPreview.style.display = 'block';
-
-            const oFReader = new FileReader();
-            oFReader.readAsDataURL(image.files[0]);
-
-            oFReader.onload = function(oFREvent){
-                imgPreview.src = oFREvent.target.result;
-            }
-
-        }
+        
     </script>
 </x-master>

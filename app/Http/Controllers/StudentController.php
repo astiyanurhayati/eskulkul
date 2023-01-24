@@ -15,9 +15,21 @@ use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
-        $masterStudent = Student::with('users')->get();
+        $keyword = $request->keyword;
+      
+
+        $datas = []; 
+       
+        $masterStudent = Student::with('users')->where('name', 'LIKE', '%'.$keyword.'%')
+                                                ->orWhere('nis', 'LIKE', '%'.$keyword.'%')
+                                                ->orWhere('rombel', 'LIKE', '%'.$keyword.'%')
+                                                ->orWhere('rayon', 'LIKE', '%'.$keyword.'%')
+
+                                                
+        ->get();
+        
         return view('dashboard.master_student.student', compact('masterStudent'));
     }
 
@@ -27,8 +39,6 @@ class StudentController extends Controller
         $masterStudent = User::with('students')->where('id', Auth::user()->id)->get();
         return view('dashboard.instructor.manage.data', compact('masterStudent'));
     }
-
-
 
     
     public function create(){
@@ -68,11 +78,11 @@ class StudentController extends Controller
     public function createStudentOwn(){
 
         $names = Student::all();
-        $eskuls = User::with('category')->get();
-        $keputrian = User::with('category')->where('category_id', '=', '1')->get();
-        $umum = User::with('category')->where('category_id', '=', '2')->get();
-        $produktif = User::with('category')->where('category_id', '=', '3')->get();
+        $umum = User::with('category')->where('category_id', '=', '1')->get();
+        $produktif = User::with('category')->where('category_id', '=', '2')->get();
+        $keputrian = User::with('category')->where('category_id', '=', '3')->get();
         $seni = User::with('category')->where('category_id', '=', '4')->get();
+        $eskuls = User::with('category')->get();
         return view('dashboard.master_student.eskul', compact('names', 'eskuls', 'keputrian', 'umum', 'produktif', 'seni'));
     }
 
@@ -81,27 +91,19 @@ class StudentController extends Controller
 
         // dd($request->all());
         $name = $request->name;
-        $keputrian = $request->keputrian;
-        $umum = $request->umum;
+        $keputrian = $request->Keputrian;
+        $umum = $request->Umum;
         $produktif = $request->Produktif;
         $seni = $request->Seni;
         $request->validate([
             'name' => 'required',
             'Produktif' => 'required',
             'Seni' => 'required',
-            'umum' => 'required',
+            'Umum' => 'required',
         ]);
 
         // dd($keputrian[0]);
-        if ($keputrian != null) {
-            for ($i = 0; $i < count($keputrian); $i++) {
-
-                StudentUser::create([
-                    'student_id' => $request->name,
-                    'user_id' => $keputrian[$i]
-                ]);
-            }
-        }
+       
 
         if (count($umum) > 0) {
             for ($i = 0; $i < count($umum); $i++) {
@@ -117,6 +119,14 @@ class StudentController extends Controller
                 StudentUser::create([
                     'student_id' => $request->name,
                     'user_id' => $produktif[$i]
+                ]);
+            }
+        }
+        if ($keputrian != null) {
+            for ($i = 0; $i < count($keputrian); $i++) {
+                StudentUser::create([
+                    'student_id' => $request->name,
+                    'user_id' => $keputrian[$i]
                 ]);
             }
         }
@@ -150,10 +160,7 @@ class StudentController extends Controller
         return view('dashboard.instructor.absensi.absensi', compact('masterStudent'));
     }
 
-    public function absensiStore(Request $request){
-        dd($request->all());
-    }
-    
+
     public function absensiRedirect(Request $request){
 
         // dd($request->kelas);
@@ -167,16 +174,32 @@ class StudentController extends Controller
         }
         // dd($students);
 
-        foreach($students as $item){
-            Absensi::create([
-                'tanggal' => $request->tanggal,
-                'student_id' => $item->student_id
-            ]);
-        }
+        // foreach($students as $item){
+        //     Absensi::create([
+        //         'tanggal' => $request->tanggal,
+        //         'student_id' => $item->student_id
+        //     ]);
+        // }
         
-
-    
         return view('dashboard.instructor.absensi.showinput', compact('request', 'students'));
+    }
+
+    public function absensiStore(Request $request){
+        // dd($request->all());
+
+
+        $request->validate([
+            'keterangan' => 'required'
+        ]);
+        
+        Absensi::create([
+            'tanggal' => $request->tanggal,
+            'student_id' => $request->student_id,
+            'keterangan' => $request->keterangan
+
+        ]);
+
+        return back();
     }
 
 

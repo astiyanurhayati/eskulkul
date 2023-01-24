@@ -14,8 +14,14 @@
       {{session('success')}}
     </div>
    @endif
+  <form action="">
+    <div class="input-group w-25 mb-3 float-right mb-5">
+      <input type="text" name="keyword" class="form-control" placeholder="Search..." >
+      <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+    </div>
+  </form>
 <a href="{{url('dashboard/student/create')}}">    <button class="btn btn-primary mb-2" style="color: white">+ Siswa</button></a>
-    <div class="app-card shadow-sm">
+    <div class="app-card shadow-sm mt-3">
         <div class="table-responsive">
             <table  class="table table-striped">
            <thead>
@@ -33,7 +39,7 @@
            
            </thead>
            <tbody>
-            @foreach ( $masterStudent as  $student)   
+            @forelse ( $masterStudent as  $student)   
             <tr>
               <th scope="row">{{$loop->iteration}}</th>
               <td>{{$student->name}}</td> 
@@ -71,25 +77,13 @@
                 @endforeach
               </td>
 
-             
-
-
-              {{-- <td class="d-flex gap-1">
-              <a href="{{route('dashboard.student.edit', $student->slug)}}">  <button  class="btn btn-danger" style="color: white">edit</button></a>
-              
-              <a href="{{url('student', $student->slug)}}"> <button class="btn" style="background: orange; color:white">
-               Detail</button></a>
-              
-              <form action="" method="POST">
-                @csrf
-                @method('delete')
-                <button  class="btn btn-primary" type="submit" style="color: white" >delete</button>
-             </form> 
-             --}}
             </td>
 
            
-            @endforeach
+            @empty
+            <td>Data Kosong</td>
+            @endforelse
+
              
            </tbody>
          </table>

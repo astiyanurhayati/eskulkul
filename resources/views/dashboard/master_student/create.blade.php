@@ -1,9 +1,10 @@
 <x-master title="create">
 
     <div class="container ml-3">
-        <div class="app-card rounded w-50 pl-4">
-            <h5 class="py-2 rounded" style="padding-left:20px">Create Siswa Account</h5>
+        <div class="app-card rounded w-50 pl-3 mt-5 ml-3">
+            <h5 class="py-2 rounded" style="padding-left:20px">Create Siswa Baru</h5>
         </div>
+        
         <div class="col-8 mb-5">
 
             <div class="app-card  justify-content-start py-2 px-4  mb-5">
@@ -33,7 +34,7 @@
                     </div>
 
                    <div class="mt-3">
-                    <select class="form-select" name="rayon">
+                    <select class="form-select" id="rayon" name="rayon">
                         <option disabled selected>--Rayon--</option>
                         @foreach ($rayons as $rayon )
                             
@@ -43,7 +44,7 @@
                    </div>
 
                    <div class="mt-3">
-                    <select class="form-select" name="rombel">
+                    <select class="form-select" id="rombel" name="rombel">
                         <option disabled selected>--Rombel--</option>
                         @foreach ($rombels as $rombel )     
                         <option value="{{$rombel->name}}">{{$rombel->name}}</option>
@@ -94,5 +95,18 @@
             }
 
         }
+
+    </script>
+      <script>
+        $(document).ready(function () {
+            $("#rombel").select2({
+                theme: 'bootstrap4',
+            });
+
+            $('#rayon').select2({
+                theme: 'bootstrap4',
+            });
+
+        });
     </script>
 </x-master>

@@ -11,7 +11,7 @@ class ProgjaController extends Controller
 {
    
     public function rekapProgja(){
-        $users = User::with('progja')->where('role', 'instructor')->get();
+        $users = User::with(['progja', 'category'])->where('role', 'instructor')->get();
         return view('dashboard.progja.rekap.rekap', compact('users'));
     }
 

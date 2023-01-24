@@ -8,13 +8,14 @@
         </div>
         
       </div>
-      @if(session()->has('success'))
-      <div class="alert alert-success">
-        {{session('success')}}
-      </div>
-     @endif
-  <div class="container mt-5">
-<a href="{{url('dashboard/daftar/create')}}">    <button class="btn btn-primary mb-2" style="color: white">+ Rayon</button></a>
+      <div class="container mt-5">
+    @if(session()->has('success'))
+    <div class="alert alert-success">
+      {{session('success')}}
+    </div>
+   @endif
+<a href="{{url('dashboard/rayon/create')}}"> 
+     <button class="btn btn-primary mb-2" style="color: white">+ Rayon</button></a>
     <div class="app-card shadow-sm w-50">
         <div class="table-responsive">
             <table  class="table table-striped ">
@@ -29,21 +30,13 @@
              <tr>
               <th scope="row">{{$loop->iteration}}</th>
               <td>{{$rayon->name}}</td>
-
-              {{-- <td>{{$daftar->category->name}}</td> 
-              <td class="d-flex gap-1">
-              <a href="{{route('dashboard.daftar.edit', $daftar->slug)}}">  <button  class="btn btn-danger" style="color: white">edit</button></a>
-              
-              <a href="{{url('daftar', $daftar->slug)}}"> <button class="btn" style="background: orange; color:white">
-               Detail</button></a>
-              
-              <form action="" method="POST">
-                @csrf
-                @method('delete')
-                <button  class="btn btn-primary" type="submit" style="color: white" >delete</button>
-             </form> 
-             --}}
-            {{-- </td> --}}
+              <td>
+                <form action="{{route('dashboardrayon.destroy', $rayon->id)}}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                  <button class="btn btn-danger">Hapus</button>
+                </form>
+              </td>
 
             @endforeach
             </tr>

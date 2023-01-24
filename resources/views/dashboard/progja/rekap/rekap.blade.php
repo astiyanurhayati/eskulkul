@@ -43,7 +43,7 @@
             <tr>
               <td>{{$no++}}</td>
               <td> {{ $user['name']}} </td>
-              <td> {{ $user['']}} </td>
+              <td> {{ $user->category->name}} </td>
 
               <td>{{$progja['time']}}</td>
 

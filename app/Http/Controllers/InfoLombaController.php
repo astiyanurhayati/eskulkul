@@ -26,11 +26,10 @@ class InfoLombaController extends Controller
                 $result = $category->id;
             }
         }
-        
-        // $infoLombas->where('category_id', $result);
 
         return view('pages.info.index', [
-            'infoLombas' => $infoLombas->get()
+            'infoLombas' => $infoLombas->get(),
+            'categories' => Category::all()
         ]);
     }
     /**
@@ -66,26 +65,29 @@ class InfoLombaController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+
+        $infoimg = $request->infoimg;
+        $infolomba = $infoimg->getClientOriginalName();
+
         $request->validate([
             'link'=> 'min:3',
-            'slug'=> 'required:unique:infolombas',
             'category_id'=> 'required',
+            'infoimg' => 'required'
             
         ]);
 
-        InfoLomba::create([
+        $data =   InfoLomba::create([
            'link' => $request->link,
-           'slug' => $request->slug,
            'category_id' => $request->category_id,
            'user_id' => Auth::user()->id,
+           'infoimg' => $infolomba
         ]);
 
+        $infoimg->move(public_path() . '/info', $infolomba);
+
+        $data->save();
 
         return redirect('/dashboard/info')->with('success', 'Berhasil Tambah Informasi Lomba');
-
-      
-
-
 
     }
 
@@ -95,13 +97,9 @@ class InfoLombaController extends Controller
      * @param  \App\Models\InfoLomba  $infoLomba
      * @return \Illuminate\Http\Response
      */
-    public function show(InfoLomba $infoLomba)
-    {
-        return view('pages.info.index', [
-            'infolombas' => InfoLomba::latest()->get(),
-            'categories' => Category::all(),
-        ]);
-    }
+   
+
+  
 
     /**
      * Show the form for editing the specified resource.
@@ -109,9 +107,11 @@ class InfoLombaController extends Controller
      * @param  \App\Models\InfoLomba  $infoLomba
      * @return \Illuminate\Http\Response
      */
-    public function edit(InfoLomba $infoLomba)
+    public function edit($id)
     {
-        //
+        $infolomba = InfoLomba::where('id', $id)->first();
+        $categories = Category::all();
+        return view('dashboard.esktrakurikuler.info.edit', compact('infolomba', 'categories'));
     }
 
     /**
@@ -121,10 +121,20 @@ class InfoLombaController extends Controller
      * @param  \App\Models\InfoLomba  $infoLomba
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, InfoLomba $infoLomba)
+    public function update(Request $request,$id)
     {
-        //
+        $update = InfoLomba::findorfail($id);
+        $updateimg = $update->infoimg;
+        $data = [
+            "link" => $request->link,
+            "category_id" => $request->category_id,
+        ];
+
+        $request->infoimg->move(public_path().'/info',$updateimg);
+        $update->update($data);
+        return redirect('dashboard/info')->with('success', "berhasil update Informasi Lomba");
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -132,8 +142,29 @@ class InfoLombaController extends Controller
      * @param  \App\Models\InfoLomba  $infoLomba
      * @return \Illuminate\Http\Response
      */
-    public function destroy(InfoLomba $infoLomba)
+    public function destroy($id)
     {
-        //
+        $hapus = InfoLomba::findorfail($id);
+
+        $file = public_path('/info/') . $hapus->infoimg;
+
+        //cek jika ada gambar
+        if(file_exists($file)){
+            //maka hapus file di folder public/info/
+            @unlink($file);
+        }
+
+
+        $hapus->delete();
+        return back()->with('success', "berhasil Hapus Informasi Lomba");
+    }
+
+    public function showCategoryInfo(Category $category){
+
+        $infoLombas = $category->infolombas()->get();
+        // return $infolombas;
+        $categories = Category::all();
+
+        return view('pages.info.index', compact('infoLombas', 'categories'));
     }
 }

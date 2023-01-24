@@ -6,7 +6,13 @@
 
         </a>
         <div class="flex md:order-2 ">
-          <button type="button" class=" lg:ml-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 mr-0  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Login</button>
+          @if(Auth::check())
+          <a href="/dashboard"><button type="button" class=" lg:ml-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 mr-0  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Dashboard</button>
+
+          @else
+          <a href="/login"><button type="button" class=" lg:ml-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 mr-0  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Login</button>
+          @endif
+          </a>
         </div>
         
           <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
@@ -22,14 +28,16 @@
                 <a href="{{url('/')}}" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" aria-current="page">Home</a>
               </li>
               <li>
-                <a href="{{url('prestasis')}}" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 {{ (request()->is('prestasis*')) ? 'active' : '' }}">Prestasi</a>
+                <a href="{{url('/daftar')}}" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 {{(request()->is('daftar*')) ? 'active' : ''}}">Daftar</a>
               </li>
               <li>
                 <a href="{{url('/info-lomba')}}" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 {{(request()->is('info-lomba*')) ? 'active' : ''}}">Info Lomba</a>
               </li>
+            
               <li>
-                <a href="{{url('/daftar')}}" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 {{(request()->is('daftar*')) ? 'active' : ''}}">Daftar</a>
+                <a href="{{url('prestasis')}}" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 {{ (request()->is('prestasis*')) ? 'active' : '' }}">Prestasi</a>
               </li>
+             
             </ul>
             
           </div>
